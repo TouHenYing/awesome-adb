@@ -4,7 +4,7 @@ ADB，即 [Android Debug Bridge](https://developer.android.com/studio/command-li
 
 持续更新中，欢迎提 PR 和 Issue 补充指正，觉得有用的可以将 [此 GitHub 仓库](https://github.com/mzlogin/awesome-adb) Star 收藏备用。
 
-**注：**有部分命令的支持情况可能与 Android 系统版本及定制 ROM 的实现有关。
+**注：** 有部分命令的支持情况可能与 Android 系统版本及定制 ROM 的实现有关。
 
 Other languages: [:gb: English](./README.en.md)
 
@@ -1081,7 +1081,7 @@ adb logcat *:W
 
 会将 Warning、Error、Fatal 和 Silent 日志输出。
 
-（**注：**在 macOS 下需要给 `*:W` 这样以 `*` 作为 tag 的参数加双引号，如 `adb logcat "*:W"`，不然会报错 `no matches found: *:W`。）
+（**注：** 在 macOS 下需要给 `*:W` 这样以 `*` 作为 tag 的参数加双引号，如 `adb logcat "*:W"`，不然会报错 `no matches found: *:W`。）
 
 #### 按 tag 和级别过滤日志
 
@@ -1643,7 +1643,7 @@ ro.product.cpu.abi2=armeabi
 
 ## 修改设置
 
-**注：**修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行 `adb reboot` 重启设备，或手动重启。
+**注：** 修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行 `adb reboot` 重启设备，或手动重启。
 
 修改设置的原理主要是通过 settings 命令修改 /data/data/com.android.providers.settings/databases/settings.db 里存放的设置值。
 
@@ -1755,7 +1755,15 @@ adb shell settings put global policy_control immersive.status=com.package1,com.p
 
 ### 屏幕截图
 
-命令：
+截图保存到电脑：
+
+```sh
+adb exec-out screencap -p > sc.png
+```
+
+如果 adb 版本较老，无法使用 `exec-out` 命令，这时候建议更新 adb 版本。无法更新的话可以使用以下麻烦点的办法：
+
+先截图保存到设备里：
 
 ```sh
 adb shell screencap -p /sdcard/sc.png
@@ -1776,7 +1784,7 @@ adb pull /sdcard/sc.png
 
 实测如果指定文件名以 `.png` 结尾时可以省略 -p 参数；否则需要使用 -p 参数。如果不指定文件名，截图文件的内容将直接输出到 stdout。
 
-直接一行命令截图并保存到电脑的方法：
+另外一种一行命令截图并保存到电脑的方法：
 
 *Linux 和 Windows*
 
